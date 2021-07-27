@@ -40,7 +40,7 @@ class CustomExpenseAdapter(val expenses: ArrayList<Expenses>): BaseAdapter() {
 
         with(viewHolder){
             item.text = expenses.get(position).item
-            cost.text = expenses.get(position).cost.toString()
+            cost.text = expenses.get(position).getFormattedPrice()
         }
 
         return expenseView
