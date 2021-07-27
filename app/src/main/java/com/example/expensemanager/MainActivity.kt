@@ -20,14 +20,9 @@ class MainActivity : AppCompatActivity() {
                                 Expenses("Utility Bills", 6500f),
                                 Expenses("Insurance", 5000f))
 
-        val expensesAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, expensesList)
-        expenses.adapter = expensesAdapter
+        expenses.adapter = CustomExpenseAdapter(expensesList)
 
         totalCost.text = "₹" + Expenses.total(expensesList)
 
-//        expenses.setOnItemClickListener{adapterView, view, position, id ->
-//            val expense: TextView = view as TextView
-//            Toast.makeText(this, expense.text, Toast.LENGTH_SHORT).show()
-//        }
     }
 }
