@@ -9,9 +9,33 @@
     <ListView
         android:id="@+id/expenses"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="400dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalExpensesAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="75,300.00"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expenses" />
+
+    <TextView
+        android:id="@+id/totoalExpenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Expenses:"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/totalExpensesAmount"
+        app:layout_constraintTop_toTopOf="@+id/totalExpensesAmount" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
