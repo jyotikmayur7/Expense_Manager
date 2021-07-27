@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         expenses.adapter = CustomExpenseAdapter(expensesList)
 
-        totalCost.text = "₹" + Expenses.total(expensesList)
+        totalCost.text = Expenses.total(expensesList)
 
     }
 }
