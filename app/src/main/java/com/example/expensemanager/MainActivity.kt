@@ -19,12 +19,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loadExpenses()
-
         val expenses: ListView = findViewById(R.id.expenses)
         totalCost = findViewById(R.id.totalExpensesAmount)
         val add: Button = findViewById(R.id.add)
         val reset: Button = findViewById(R.id.reset)
+
+        loadExpenses()
 
         expenseAdapter = CustomExpenseAdapter(expensesList)
         expenses.adapter = expenseAdapter
