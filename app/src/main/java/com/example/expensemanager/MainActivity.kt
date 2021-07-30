@@ -45,17 +45,15 @@ class MainActivity : AppCompatActivity() {
             setMessage(getString(R.string.confirm_message))
 
             setPositiveButton("YES"){
-                dialog, which ->
+                _, _ ->
                 expensesList.clear()
                 saveExpenses()
             }
 
             setNegativeButton("NO"){
-                dialog, which ->
+                _, _ ->
             }
-
-            val alertDialog = builder.create()
-            alertDialog.show()
+           show()
         }
     }
 
@@ -73,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             setTitle("Add Expense")
 
             setPositiveButton("ADD"){
-                dialog, which ->
+                _, _ ->
                 val item = itemView.text.toString()
                 val price = priceView.text.toString()
                 if(item.isNotBlank() && price.isNotBlank()){
@@ -83,11 +81,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             setNegativeButton("CANCEL"){
-                dialog, which ->
+                _, _ ->
             }
+            show()
         }
-        val alertDialog = builder.create()
-        alertDialog.show()
     }
 
     private fun saveExpenses(){
