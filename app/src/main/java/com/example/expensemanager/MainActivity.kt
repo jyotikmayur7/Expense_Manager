@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
             resetList()
         }
 
+        add.setOnClickListener{
+            addExpense()
+        }
+
         expenseAdapter = CustomExpenseAdapter(expensesList)
         expenses.adapter = expenseAdapter
 
@@ -52,6 +56,35 @@ class MainActivity : AppCompatActivity() {
             val alertDialog = builder.create()
             alertDialog.show()
         }
+    }
+
+    private  fun addExpense(){
+        val builder = AlertDialog.Builder(this)
+        val inflater = this.layoutInflater
+        val dialogView: View = inflater.inflate(R.layout.expense_add, null)
+        val itemView = dialogView.findViewById<EditText>(R.id.item)
+        val priceView = dialogView.findViewById<EditText>(R.id.price)
+
+        with(builder){
+            setView(dialogView)
+            setTitle("Add Expense")
+
+            setPositiveButton("ADD"){
+                dialog, which ->
+                val item = itemView.text.toString()
+                val price = priceView.text.toString()
+                if(item.isNotBlank() && price.isNotBlank()){
+                    expensesList.add(Expenses(item, price.toFloat()))
+                    saveExpenses()
+                }
+            }
+
+            setNegativeButton("CANCEL"){
+                dialog, which ->
+            }
+        }
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 
     private fun saveExpenses(){
