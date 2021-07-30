@@ -80,6 +80,9 @@ class MainActivity : AppCompatActivity() {
                     expensesList.add(Expenses(item, price.toFloat()))
                     saveExpenses()
                 }
+                else{
+                    Toast.makeText(this@MainActivity,"Invalid Input", Toast.LENGTH_SHORT).show()
+                }
             }
 
             setNegativeButton("CANCEL"){
