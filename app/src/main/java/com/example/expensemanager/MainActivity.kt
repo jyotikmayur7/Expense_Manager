@@ -13,13 +13,14 @@ const val EXPENSE_KEY = "EXPENSE_KEY"
 class MainActivity : AppCompatActivity() {
     val expensesList = mutableListOf<Expenses>()
     lateinit var expenseAdapter: CustomExpenseAdapter
+    lateinit var totalCost: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val expenses: ListView = findViewById(R.id.expenses)
-        val totalCost: TextView = findViewById(R.id.totalExpensesAmount)
+        totalCost = findViewById(R.id.totalExpensesAmount)
         val add: Button = findViewById(R.id.add)
         val reset: Button = findViewById(R.id.reset)
 
@@ -98,6 +99,7 @@ class MainActivity : AppCompatActivity() {
             putStringSet(EXPENSE_KEY, expenses.toSet())
             commit()
         }
+        totalCost.text = Expenses.total(expensesList)
         expenseAdapter.notifyDataSetChanged()
     }
 
