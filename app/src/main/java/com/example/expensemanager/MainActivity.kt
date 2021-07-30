@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         expenseAdapter = CustomExpenseAdapter(expensesList)
         expenses.adapter = expenseAdapter
-
-        totalCost.text = Expenses.total(expensesList)
     }
 
     private fun resetList(){
@@ -110,5 +108,6 @@ class MainActivity : AppCompatActivity() {
         expenses?.forEach{
             expensesList.add(gson.fromJson(it, Expenses::class.java))
         }
+        totalCost.text = Expenses.total(expensesList)
     }
 }
