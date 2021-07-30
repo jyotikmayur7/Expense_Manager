@@ -1,10 +1,14 @@
 package com.example.expensemanager
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.google.gson.Gson
+
+const val EXPENSE_KEY = "EXPENSE_KEY"
 
 class MainActivity : AppCompatActivity() {
     val expensesList = mutableListOf<Expenses>()
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             setPositiveButton("YES"){
                 dialog, which ->
                 expensesList.clear()
+                saveExpenses()
             }
 
             setNegativeButton("NO"){
@@ -47,5 +52,17 @@ class MainActivity : AppCompatActivity() {
             val alertDialog = builder.create()
             alertDialog.show()
         }
+    }
+
+    private fun saveExpenses(){
+        val gson = Gson()
+        val expenses = expensesList.map { gson.toJson(it) }
+
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        with(sharedPref.edit()){
+            putStringSet(EXPENSE_KEY, expenses.toSet())
+            commit()
+        }
+        expenseAdapter.notifyDataSetChanged()
     }
 }
