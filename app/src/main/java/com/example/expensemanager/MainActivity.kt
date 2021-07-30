@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
             addExpense()
         }
 
+        loadExpenses()
+
         expenseAdapter = CustomExpenseAdapter(expensesList)
         expenses.adapter = expenseAdapter
 
@@ -97,5 +99,14 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
         expenseAdapter.notifyDataSetChanged()
+    }
+
+    private fun loadExpenses(){
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        val gson = Gson()
+        val expenses = sharedPref.getStringSet(EXPENSE_KEY, null)
+        expenses?.forEach{
+            expensesList.add(gson.fromJson(it, Expenses::class.java))
+        }
     }
 }
