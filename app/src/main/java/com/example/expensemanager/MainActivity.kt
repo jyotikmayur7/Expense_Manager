@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity() {
         val dialogView: View = inflater.inflate(R.layout.expense_add, null)
         val itemView = dialogView.findViewById<EditText>(R.id.item)
         val priceView = dialogView.findViewById<EditText>(R.id.price)
+        itemView.error = "Field cannot be empty"
+        priceView.error = "Field cannot be empty"
 
         with(builder){
             setView(dialogView)
