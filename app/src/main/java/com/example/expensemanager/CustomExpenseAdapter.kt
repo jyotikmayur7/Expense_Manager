@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class CustomExpenseAdapter(val expenses: ArrayList<Expenses>): BaseAdapter() {
+class CustomExpenseAdapter(val expenses: List<Expenses>): BaseAdapter() {
     override fun getCount(): Int {
         return expenses.size
     }

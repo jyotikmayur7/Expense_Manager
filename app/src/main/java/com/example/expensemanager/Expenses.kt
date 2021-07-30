@@ -13,7 +13,7 @@ data class Expenses(val item: String, val cost: Float){
             formatter.currency = Currency.getInstance("INR")
         }
 
-        fun total(expenses : ArrayList<Expenses>) : String {
+        fun total(expenses : List<Expenses>) : String {
             var total: Float = 0f
             expenses.forEach {
                 total += it.cost
