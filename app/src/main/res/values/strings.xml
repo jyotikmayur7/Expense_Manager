@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Expense Manager</string>
+    <string name="confirm_reset">Confirm Reset</string>
+    <string name="confirm_message">Are you sure you want to remove all the added expenses?</string>
 </resources>
