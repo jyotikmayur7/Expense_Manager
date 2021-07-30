@@ -3,6 +3,8 @@ package com.example.expensemanager
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -63,8 +65,8 @@ class MainActivity : AppCompatActivity() {
         val dialogView: View = inflater.inflate(R.layout.expense_add, null)
         val itemView = dialogView.findViewById<EditText>(R.id.item)
         val priceView = dialogView.findViewById<EditText>(R.id.price)
-        itemView.error = "Field cannot be empty"
-        priceView.error = "Field cannot be empty"
+        setErrorListener(itemView)
+        setErrorListener(priceView)
 
         with(builder){
             setView(dialogView)
@@ -85,6 +87,21 @@ class MainActivity : AppCompatActivity() {
             }
             show()
         }
+    }
+
+    private fun setErrorListener(editText: EditText){
+        editText.error = if(editText.text.toString().isNotEmpty()) null else "Field Cannot be Empty"
+        editText.addTextChangedListener(object: TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                editText.error = if(editText.text.toString().isNotEmpty()) null else "Field Cannot be Empty"
+            }
+        })
     }
 
     private fun saveExpenses(){
