@@ -6,24 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/reset" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:text="RESET"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalExpensesAmount" />
+
     <ListView
         android:id="@+id/expenses"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/list_item" />
 
     <TextView
         android:id="@+id/totalExpensesAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:text="₹75,300.00"
+        android:textColor="@color/red"
         android:textSize="18dp"
         android:textStyle="bold"
-        android:textColor="@color/red"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expenses" />
 
@@ -31,10 +52,10 @@
         android:id="@+id/totoalExpenses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Expenses:"
-        android:textStyle="bold"
-        android:textSize="18dp"
         android:layout_marginRight="10dp"
+        android:text="Total Expenses:"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/totalExpensesAmount"
         app:layout_constraintTop_toTopOf="@+id/totalExpensesAmount" />
 
