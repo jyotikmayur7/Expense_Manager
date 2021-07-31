@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="50dp">
 
     <TextView
         android:id="@+id/item"
@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
-        android:paddingBottom="15dp"
         android:text="Groceries"
         android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/cost"
