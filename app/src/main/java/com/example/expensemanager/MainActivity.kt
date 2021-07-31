@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 
 const val EXPENSE_KEY = "EXPENSE_KEY"
@@ -21,15 +22,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val expenses: ListView = findViewById(R.id.expenses)
+        val expenses = findViewById<RecyclerView>(R.id.expenses)
         totalCost = findViewById(R.id.totalExpensesAmount)
         val add: Button = findViewById(R.id.add)
         val reset: Button = findViewById(R.id.reset)
 
         loadExpenses()
 
-        expenseAdapter = CustomExpenseAdapter(expensesList)
-        expenses.adapter = expenseAdapter
+//        expenseAdapter = CustomExpenseAdapter(expensesList)
+//        expenses.adapter = expenseAdapter
 
         reset.setOnClickListener{
             resetList()
