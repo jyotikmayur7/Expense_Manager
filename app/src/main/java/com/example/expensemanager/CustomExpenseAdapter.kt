@@ -6,48 +6,33 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
-class CustomExpenseAdapter(val expenses: List<Expenses>): BaseAdapter() {
-    override fun getCount(): Int {
-        return expenses.size
-    }
+class CustomExpenseAdapter(val expenses: List<Expenses>): RecyclerView.Adapter<CustomExpenseAdapter.ExpenseViewHolder>() {
 
-    override fun getItem(position: Int): Any {
-        return expenses.get(position)
+
+    class ExpenseViewHolder(view: View): RecyclerView.ViewHolder(view){
+        val item = view.findViewById<TextView>(R.id.item)
+        val cost = view.findViewById<TextView>(R.id.cost)
     }
 
     override fun getItemId(position: Int): Long {
         return expenses.get(position).item.hashCode().toLong()
     }
 
-    override fun getView(position: Int, convertView: View?, container: ViewGroup): View {
-        val expenseView: View
-        val viewHolder: ViewHolder
-
-        if(convertView == null){
-            expenseView = LayoutInflater.from(container.context).inflate(R.layout.list_item,container,false)
-            viewHolder = ViewHolder()
-            with(viewHolder){
-                item = expenseView.findViewById(R.id.item)
-                cost = expenseView.findViewById(R.id.cost)
-                expenseView.tag = this
-            }
-        }
-        else{
-            expenseView = convertView
-            viewHolder = expenseView.tag as ViewHolder
-        }
-
-        with(viewHolder){
-            item.text = expenses.get(position).item
-            cost.text = expenses.get(position).getFormattedPrice()
-        }
-
-        return expenseView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
+        val itemLayout = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        return ExpenseViewHolder(itemLayout)
     }
 
-    private class ViewHolder{
-        lateinit var item: TextView
-        lateinit var cost: TextView
+    override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
+        holder.cost.text = expenses[position].getFormattedPrice()
+        holder.item.text = expenses[position].item
     }
+
+    override fun getItemCount(): Int {
+        return expenses.size
+    }
+
+
 }
