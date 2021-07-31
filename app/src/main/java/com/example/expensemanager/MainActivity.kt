@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 
@@ -22,15 +23,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val expenses = findViewById<RecyclerView>(R.id.expenses)
+        val expenses = findViewById<RecyclerView>(R.id.expenses).apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+
+            expenseAdapter = CustomExpenseAdapter(expensesList)
+            adapter = expenseAdapter.apply {
+                setHasStableIds(true)
+            }
+            setHasFixedSize(true)
+        }
         totalCost = findViewById(R.id.totalExpensesAmount)
         val add: Button = findViewById(R.id.add)
         val reset: Button = findViewById(R.id.reset)
 
         loadExpenses()
-
-//        expenseAdapter = CustomExpenseAdapter(expensesList)
-//        expenses.adapter = expenseAdapter
 
         reset.setOnClickListener{
             resetList()
